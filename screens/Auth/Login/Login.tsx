@@ -106,9 +106,8 @@ container: {
   backgroundColor: pallets.backgroundDarker
 },
 password: {
-    position: "absolute",
     color: pallets.primary,
-    marginTop: 405,
+    top: -17,
     alignSelf: "flex-end",
     paddingRight: 15
 }

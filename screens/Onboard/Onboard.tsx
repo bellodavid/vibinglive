@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PagerView from 'react-native-pager-view';
 import WelcomCard from '../../components/welcome/WelcomCard';
+import Button from '../../components/Form/Button';
 
 const Onboard = () => {
   const image1 = require('../../assets/images/onboard/onboard1.png');
@@ -26,7 +27,7 @@ const Onboard = () => {
       style={styles.container}
       initialPage={0}
       onPageSelected={handleSwipe}
-      onPageScrollStateChanged={handleSwipeEnd}
+      
     >
       <View key="1">
         <WelcomCard
@@ -51,7 +52,9 @@ const Onboard = () => {
           value="3 of 3"
           title="Unlimited Downloads"
           description="Manage your playlist of dope Dj mixs, Audio books and best of Gospel musics to your liking"
+
         />
+        <Button onPress={handleSwipeEnd}  action="Get Started"/>
       </View>
     </PagerView>
   );
