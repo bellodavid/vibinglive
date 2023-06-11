@@ -1,0 +1,1 @@
+export { pallets } from './color';

@@ -1,0 +1,33 @@
+type AlbumsEntry {
+  _id: String
+  songs: [SongsEntry]
+  title: String
+}
+type Data {
+  doc: [DocEntry]
+}
+type DocEntry {
+  _id: String
+  albums: [AlbumsEntry]
+  title: String
+}
+type Root {
+  data: Data
+  result: Int
+  status: String
+}
+type SongsEntry {
+  _id: String
+  artist: String
+  imgUri: String
+  playUri: String
+  title: String
+  uri: String
+}
+
+type Query {
+  myQuery: Root
+    @rest(
+      endpoint: "https://good-puce-nematode-cuff.cyclic.app/api/v1/category"
+    )
+}

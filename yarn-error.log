@@ -1,0 +1,61 @@
+Arguments: 
+  /usr/bin/node /snap/node/7222/bin/yarn.js add @gorhom/bottom-sheet@^4
+
+PATH: 
+  /home/brainydel/node-v18.12.1-linux-x64:/home/brainydel/node-v18.12.1-linux-x64:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/brainydel/Android/Sdk/emulator:/home/brainydel/Android/Sdk/platform-tools:/home/brainydel/Android/Sdk/emulator:/home/brainydel/Android/Sdk/platform-tools
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/react-native/-/react-native-0.71.3.tgz: ETIMEDOUT
+      at Timeout._onTimeout (/snap/node/7222/lib/cli.js:141550:19)
+      at listOnTimeout (node:internal/timers:564:17)
+      at process.processTimers (node:internal/timers:507:7)
+
+npm manifest: 
+  {
+    "name": "vibingnew",
+    "version": "1.0.0",
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web"
+    },
+    "dependencies": {
+      "@react-navigation/material-bottom-tabs": "^6.2.15",
+      "@react-navigation/native": "^6.1.6",
+      "@react-navigation/native-stack": "^6.9.12",
+      "@rneui/base": "^0.0.0-edge.2",
+      "@rneui/themed": "^0.0.0-edge.2",
+      "expo": "~48.0.4",
+      "expo-status-bar": "~1.4.4",
+      "react": "18.2.0",
+      "react-native": "0.71.3",
+      "react-native-paper": "^5.2.0",
+      "react-native-reanimated": "~2.14.4",
+      "react-native-vector-icons": "^9.2.0",
+      "react-native-gesture-handler": "~2.9.0"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.20.0",
+      "@types/react": "~18.0.14",
+      "@types/react-native": "^0.71.3",
+      "typescript": "^4.9.4"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
