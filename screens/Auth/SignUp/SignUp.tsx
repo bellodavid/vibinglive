@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Platform,
+  ActivityIndicator,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Icon, Input } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
@@ -12,7 +19,7 @@ import { pallets } from "../../../constant";
 import Button from "../../../components/Form/Button";
 import PasswordField from "../../../components/Form/PasswordField";
 import Information from "../../../components/Form/Information";
-import { addDoc, collection,  doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 const SignUp = () => {
   const [value, setValue] = useState({
     name: "",
@@ -21,7 +28,7 @@ const SignUp = () => {
     confirmPass: "",
     error: "",
   });
-
+  const size = Platform.OS === "ios" ? "large" : 70;
   const [password, setPassword] = useState({
     password: false,
     confirmPassword: false,
@@ -44,7 +51,7 @@ const SignUp = () => {
       confirmPassword: !prevState.confirmPassword,
     }));
   };
- 
+
   const handleSignUp = async () => {
     if (value.email === "" || value.password === "") {
       setValue({
@@ -72,29 +79,21 @@ const SignUp = () => {
 
       // Check if the user's email is verified
       if (!user.emailVerified) {
-
         await sendEmailVerification(user);
+        alert("Check your email to verify your account");
         navigation.navigate("Login");
       } else {
         // User's email is verified, navigate to login screen
-        navigation.navigate("Login");
+        navigation.navigate("tab");
       }
     } catch (error) {
       setValue({
         ...value,
         error: error.message,
       });
-      try {
-        const docRef = await addDoc(collection(db, "users"),{
-          displayName: value.name,
-        });
-        console.log("written", docRef.id)
-      }catch (err) {
-        console.error("Error adding document: ", e);
-      }
-    }
 
-  
+      setIsLoading(false);
+    }
   };
 
   const signIn = () => {
@@ -206,6 +205,18 @@ const SignUp = () => {
             instruction="Minimum of 6 letters including numbers"
             secure={password.confirmPassword ? true : false}
           />
+          {isLoading && (
+            <ActivityIndicator
+              style={{
+                position: "absolute",
+                alignSelf: "center",
+                height: "100%",
+                zIndex: 1,
+              }}
+              size={size}
+              color="#ffff"
+            />
+          )}
           <Button
             pressIn={signIn}
             call="Sign in"

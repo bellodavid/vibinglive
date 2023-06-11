@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacityBase } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacityBase, ActivityIndicator, Platform } from 'react-native'
 import React, { useState } from 'react'
 import { pallets } from '../../../constant'
 import InputField from '../../../components/Form/InputField'
@@ -22,7 +22,8 @@ const Login = () => {
 
    const [password, setPassword] =React.useState(false)
   const navigation = useNavigation();
-  
+  const [isLoading, setIsLoading] = React.useState(false)
+  const size = Platform.OS === 'ios'? 'large': 70
   const handlePassword = () => {
     navigation.navigate('Password')
   }
@@ -34,24 +35,34 @@ const Login = () => {
   const togglePasswordVisibility = () => {
     setPassword(!password)
   }
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(auth, value.email, value.password)
+  const handleSignIn = async() => {
+   setIsLoading(true)
+   await signInWithEmailAndPassword(auth, value.email, value.password)
     .then((userCredential) => {
       console.log('signed in')
       const user = userCredential.user
       console.log(user)
-      navigation.navigate('tab')
+      if (!user?.emailVerified) {
+        alert('Please verify your email address')
+        isLoading(false)
+      }else{
+        navigation.navigate('Home')
+      }
+     
     }). catch(error => {
       setValue({
         ...value,
         error: error.message
-      })
+      });
+      setIsLoading(false)
     })
+    
   }
 
 
   return (
     <ScrollView style={styles.container}>
+     
     <TouchableOpacity>
      
     <Icon 
@@ -62,10 +73,11 @@ const Login = () => {
       onPress={navigation.goBack}/>
     
       </TouchableOpacity>
-    <View style={{marginTop: 30, marginLeft: 10, marginRight: 10}}>
+       <View style={{marginTop: 30, marginLeft: 10, marginRight: 10}}>
+       
     <Information title ="Login" description = "Welcome back to VibingLIVE, time to listen to the music you want and 
     enjoy the music"/>
-
+       
     <Text style={{ paddingBottom: 10, paddingLeft: 7, fontSize: 11, color: "red"}}>{value.error.includes('Firebase:')? value.error.replace('Firebase:','') : value.error}</Text>    
       <InputField 
       placeholder="Enter your email address"
@@ -86,11 +98,17 @@ const Login = () => {
       setHandler={(text) => setValue({...value, password: text}) }
        />
       <Text onPress={handlePassword} style={styles.password}>Forgot password?</Text>
-      
+      {isLoading && (
+
+        <ActivityIndicator style={{position: "absolute", alignSelf: "center", height: "100%", zIndex: 1}} size={size} color="#ffff" />
+        )}
      <View >
       <Button onPress={handleSignIn} pressIn={handleSignUp} call ="Sign up" description='You have account?' action="Login"/>
+      
       </View>
+     
       </View>
+   
     </ScrollView>
   )
 

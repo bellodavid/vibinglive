@@ -2,8 +2,6 @@ import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { NavigationContainer, Theme } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import Onboard from "../screens/Onboard/Onboard";
-import SignUp from "../screens/Auth/SignUp/SignUp";
 import RootNavigator from "../navigation/RootNavigator";
 import PlayerWidget from "../components/PlayerWidget/PlayerWidget";
 import { AppContext } from "../AppContext";
@@ -12,10 +10,11 @@ import { auth } from "../firebase/config";
 const LoadApp = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setIsLoggedin(true);
-      } else {
+      if (!user?.emailVerified) {
+        console.log("not verified");
         setIsLoggedin(false);
+      } else {
+        setIsLoggedin(true);
       }
     });
     return unsubscribe;
