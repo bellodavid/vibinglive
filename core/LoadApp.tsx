@@ -6,6 +6,7 @@ import RootNavigator from "../navigation/RootNavigator";
 import PlayerWidget from "../components/PlayerWidget/PlayerWidget";
 import { AppContext } from "../AppContext";
 import { auth } from "../firebase/config";
+import PlayerScreen from "../screens/App/PlayerScreen";
 
 const LoadApp = () => {
   useEffect(() => {
@@ -23,7 +24,7 @@ const LoadApp = () => {
   const [songId, setSongId] = useState<string>(null);
   const [songUri, setSongUri] = useState<string>(null);
   const [songImg, setSongImg] = useState<string>(null);
-  const [ albumImage, setAlbumImage] = useState<string>(null)
+  const [albumImage, setAlbumImage] = useState<string>(null);
   const [songArtist, setSongArtist] = useState<string>(null);
   return (
     <>
@@ -38,13 +39,14 @@ const LoadApp = () => {
           songArtist,
           setSongArtist: (artist: string) => setSongArtist(artist),
           albumImage,
-          setAlbumImage: (albumImage: string) => setAlbumImage(albumImage)
+          setAlbumImage: (albumImage: string) => setAlbumImage(albumImage),
         }}
       >
         <NavigationContainer>
           <SafeAreaProvider>
-            <RootNavigator />
-            {isLoggedin ? <PlayerWidget /> : null}
+          <PlayerScreen />
+            {/* <RootNavigator /> */}
+            {/* {isLoggedin ? <PlayerWidget /> : null} */}
           </SafeAreaProvider>
         </NavigationContainer>
       </AppContext.Provider>
