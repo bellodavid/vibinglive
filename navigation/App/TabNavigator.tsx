@@ -10,13 +10,14 @@ import SearchScreen from "../../screens/App/SearchScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import LibraryScreen from "../../screens/App/LibraryScreen";
 import AlbumScreen from "../../screens/App/AlbumScreen";
+import RootNavigator from "../RootNavigator";
 export type TabStackParamList = {
   Home: undefined;
   Search: undefined;
   Library: undefined;
 };
 
-const TabNavigator = () => {
+const TabNavigator = ({navigation}: {navigation:any}) => {
   const Tab = createBottomTabNavigator<TabStackParamList>();
   const naviation = useNavigation();
 
