@@ -1,24 +1,30 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
+import React, {useContext} from "react";
 import { Card, Image } from "@rneui/themed";
 import Logo from "./Logo";
 import { Album } from "../../types";
 import { useNavigation } from "@react-navigation/native";
 import albumDetails from "../../data/albumDetails";
+import {AppContext} from "../../AppContext";
 
 type AlbumCardProps = {
   playTitle: string;
   player: string;
   imageUri: string;
   artistsHeadline: string;
+  album: any;
 };
 
-const AlbumCard = (props: AlbumCardProps) => {
-  const navigation = useNavigation();
-
+const AlbumCard = <AlbumCardProps>({album}) => {
+  const navigation = useNavigation()
+  const {setAlbumImage} = useContext(AppContext)
   const handleClick = () => {
-    navigation.navigate("albumScreen");
+    navigation.navigate("albumScreen", { albumImageUri: album.imageUri });
+    setAlbumImage(album.imageUri)
+
+
   };
+ 
   return (
     <TouchableOpacity onPress={handleClick}>
       <View
@@ -37,16 +43,16 @@ const AlbumCard = (props: AlbumCardProps) => {
               width: 155,
               height: 155,
             }}
-            source={{ uri: props.album.imageUri }}
+            source={{ uri: album.imageUri }}
           />
         </View>
         <Logo />
         <View style={{ marginTop: 20 }}>
           <Text style={{ color: "white", fontWeight: "bold" }}>
-            {props.album.player}
+            {album.player}
           </Text>
           <Text style={{ color: "white", fontSize: 12 }}>
-            {props.album.artistsHeadline}
+            {album.artistsHeadline}
           </Text>
         </View>
       </View>
