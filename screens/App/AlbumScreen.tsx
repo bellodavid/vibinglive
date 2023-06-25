@@ -14,7 +14,7 @@ import PlayerWidget from "../../components/PlayerWidget/PlayerWidget";
 
 const AlbumScreen = () => {
   const route = useRoute();
-  console.log(route);
+  // console.log(route);
   const [album, setAlbum] = useState(null);
   const [savedTracks, setSavedTracks] = useState();
   const image = route.params.albumImageUri;
@@ -25,7 +25,7 @@ const AlbumScreen = () => {
     try {
       const response = await fetch(API_URL);
       const data = await response.json();
-      setSavedTracks(data.items);
+      setSavedTracks(data.data.doc);
       console.log(JSON.stringify(savedTracks, null, 2));
     } catch (err) {
       console.log(err);
@@ -43,6 +43,7 @@ const AlbumScreen = () => {
   };
   const navigation = useNavigation();
   return (
+    <View>
     <ScrollView style={{ backgroundColor: pallets.background }}>
       <View style={styles.container}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -58,7 +59,7 @@ const AlbumScreen = () => {
         {/* <AlbumHeader/> */}
 
         <FlatList
-          data={albumCategories[0].albums[0].songs}
+          data={savedTracks}
           renderItem={({ item }) => <SongList song={item} />}
           keyExtractor={(item) => item.id}
           ListHeaderComponent={() => (
@@ -66,7 +67,10 @@ const AlbumScreen = () => {
           )}
         />
       </View>
+    
     </ScrollView>
+    <PlayerWidget />
+    </View>
   );
 };
 
@@ -75,6 +79,8 @@ export default AlbumScreen;
 const styles = StyleSheet.create({
   container: {
     marginTop: 40,
+    flex: 1,
+    marginBottom: 50,
     backgroundColor: pallets.background,
     marginLeft: 20,
     marginRight: 20,

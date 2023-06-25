@@ -60,6 +60,7 @@ const PlayerWidget = ({ songHandle }) => {
     if (sound) {
       await sound.unloadAsync();
     }
+
     const { sound: newSound } = await Audio.Sound.createAsync(
       { uri: songUri },
       { shouldPlay: isPlaying },
@@ -89,12 +90,18 @@ const PlayerWidget = ({ songHandle }) => {
       return 0;
     }
 
-
     return (position / totalDuration) * 100;
   };
 
   return (
-    <View style={{ position: "absolute", bottom: 40 }}>
+    <View
+      style={{
+        position: "absolute",
+        bottom: -17,
+        height: screenHeight * 0.1,
+        flex: 1,
+      }}
+    >
       <View style={[styles.progress, { width: `${getProgress()}%` }]} />
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
         <View style={styles.container}>
@@ -206,7 +213,7 @@ const PlayerWidget = ({ songHandle }) => {
                 icon={isPlaying ? "pause" : "play"}
                 currentTime={formatTime(position)}
                 totalTime={formatTime(totalDuration)}
-                progress={getProgress()/100}
+                progress={getProgress() / 100}
               />
             </View>
           </ModalContent>
@@ -223,8 +230,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 60,
-   
-  
     backgroundColor: pallets.backgroundDarker,
     flexDirection: "row",
     paddingLeft: 20,

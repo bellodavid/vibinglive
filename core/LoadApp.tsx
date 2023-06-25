@@ -52,7 +52,7 @@ const LoadApp = () => {
             {/* <PlayerWidget /> */}
             {/* {isLoggedin ? <PlayerWidget /> : null} */}
           </SafeAreaProvider>
-          <PlayerWidget />
+         
           <ModalPortal/>
         </NavigationContainer>
       </AppContext.Provider>
