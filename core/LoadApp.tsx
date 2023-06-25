@@ -25,8 +25,9 @@ const LoadApp = () => {
   const [songId, setSongId] = useState<string>(null);
   const [songUri, setSongUri] = useState<string>(null);
   const [songImg, setSongImg] = useState<string>(null);
-  const [albumImage, setAlbumImage] = useState<string>(null);
+  const [savedTrack, setSavedTrack] = useState(null);
   const [songArtist, setSongArtist] = useState<string>(null);
+  const [albumImage, setAlbumImage] = useState<string>(null);
   const [progress, setProgress] = useState<string>(null);
   return (
     <>
@@ -40,10 +41,12 @@ const LoadApp = () => {
           setSongImg: (img: string) => setSongImg(img),
           songArtist,
           setSongArtist: (artist: string) => setSongArtist(artist),
-          albumImage,
-          setAlbumImage: (albumImage: string) => setAlbumImage(albumImage),
+          savedTrack,
+          setSavedTrack: ( savedTrack:[]) => setSavedTrack(savedTrack),
           progress,
           setProgress: (progress: string) => setProgress(progress),
+          albumImage,
+          setAlbumImage: (albumImage: string) => setAlbumImage(albumImage),
         }}
       >
         <NavigationContainer>
