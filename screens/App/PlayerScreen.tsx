@@ -6,7 +6,7 @@ import AlbumHeader from "../../components/AlbumHeader/AlbumHeader";
 import PlayerCard from "../../components/player/PlayerCard";
 import CurrentSong from "../../components/player/CurrentSong";
 import SliderBar from "../../components/player/Slider";
-
+import { AppContext } from "../../AppContext";
 const PlayerScreen = () => {
   return (
     <ScrollView style={styles.container}>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     height: ScreenHeight,
   },
   innerContainer: {
-    marginTop: 40,
+    marginTop: 50,
     marginLeft: 20,
     marginRight: 20,
   },

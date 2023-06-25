@@ -16,6 +16,7 @@ import Category from "../../components/Category/Category";
 import { LinearGradient } from "expo-linear-gradient";
 import albumCategories from "../../data/albumCategories";
 import albumDetails from "../../data/albumDetails";
+import PlayerWidget from "../../components/PlayerWidget/PlayerWidget";
 
 let ScreenHeight = Dimensions.get("window").height;
 const HomeScreen = () => {
@@ -35,6 +36,7 @@ const HomeScreen = () => {
           keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
         />
+        
         <View style={{ height: 70 }}></View>
       </View>
     </ScrollView>

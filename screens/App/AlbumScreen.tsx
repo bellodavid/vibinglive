@@ -1,45 +1,46 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { pallets } from "../../constant";
 import SongList from "../../components/SongList/SongList";
 import AlbumHeader from "../../components/AlbumHeader/AlbumHeader";
 import { Icon } from "@rneui/themed";
+
 import { useNavigation, useRoute } from "@react-navigation/native";
 import AlbumButtons from "../../components/AlbumHeader/AlbumButtons";
 import albumDetails from "../../data/albumDetails";
 import albumCategories from "../../data/albumCategories";
+import PlayerWidget from "../../components/PlayerWidget/PlayerWidget";
 
 const AlbumScreen = () => {
   const route = useRoute();
   console.log(route);
   const [album, setAlbum] = useState(null);
-  const [data, setData] = useState();
+  const [savedTracks, setSavedTracks] = useState();
   const image = route.params.albumImageUri;
-  const API_URL = "https://good-puce-nematode-cuff.cyclic.app/api/v1/albums";
 
-  const fetchData = async () => {
+  const API_URL = "https://good-puce-nematode-cuff.cyclic.app/api/v1/songs";
+
+  const getSavedTracks = async () => {
     try {
       const response = await fetch(API_URL);
-      const json = await response.json();
-      setData(json);
+      const data = await response.json();
+      setSavedTracks(data.items);
+      console.log(JSON.stringify(savedTracks, null, 2));
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    fetchData();
-
-    // if (Array.isArray(albumCategories.albums)) {
-    //   const album = albumCategories.albums.find(album => album.id === albumId);
-    //   setAlbum(album);
-    //   console.log(albumId)
-    // } else {
-    //   console.log("albumDetails is not an array or is not defined.");
-    // }
+    getSavedTracks();
   }, []);
-
+  const playTrack = async () => {
+    if (savedTracks.length > 0) {
+      setCurrentTrack(savedTracks[0]);
+    }
+    await play(savedTracks[0]);
+  };
   const navigation = useNavigation();
   return (
     <ScrollView style={{ backgroundColor: pallets.background }}>

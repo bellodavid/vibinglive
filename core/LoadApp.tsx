@@ -5,6 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import RootNavigator from "../navigation/RootNavigator";
 import PlayerWidget from "../components/PlayerWidget/PlayerWidget";
 import { AppContext } from "../AppContext";
+import {ModalPortal} from "react-native-modals"
 import { auth } from "../firebase/config";
 import PlayerScreen from "../screens/App/PlayerScreen";
 
@@ -26,6 +27,7 @@ const LoadApp = () => {
   const [songImg, setSongImg] = useState<string>(null);
   const [albumImage, setAlbumImage] = useState<string>(null);
   const [songArtist, setSongArtist] = useState<string>(null);
+  const [progress, setProgress] = useState<string>(null);
   return (
     <>
       <AppContext.Provider
@@ -40,14 +42,18 @@ const LoadApp = () => {
           setSongArtist: (artist: string) => setSongArtist(artist),
           albumImage,
           setAlbumImage: (albumImage: string) => setAlbumImage(albumImage),
+          progress,
+          setProgress: (progress: string) => setProgress(progress),
         }}
       >
         <NavigationContainer>
           <SafeAreaProvider>
-          <PlayerScreen />
-            {/* <RootNavigator /> */}
+            <RootNavigator />
+            {/* <PlayerWidget /> */}
             {/* {isLoggedin ? <PlayerWidget /> : null} */}
           </SafeAreaProvider>
+          <PlayerWidget />
+          <ModalPortal/>
         </NavigationContainer>
       </AppContext.Provider>
     </>

@@ -4,8 +4,7 @@ import { AppContext } from "../../AppContext";
 import { Icon } from "@rneui/themed";
 import { Fontisto } from "@expo/vector-icons";
 
-const CurrentSong = () => {
-  const { songId, songArtist } = useContext(AppContext);
+const CurrentSong = ({ title, artist }) => {
   const [isLiked, setIsLiked] = React.useState(false);
   const handleLike = () => {
     setIsLiked(!isLiked);
@@ -14,18 +13,16 @@ const CurrentSong = () => {
     <View
       style={{
         flexDirection: "row",
-        width: "90%",
+        width: "100%",
         justifyContent: "space-between",
-        marginTop: 30,
-        marginLeft: 20,
-        marginRight: 20,
+        marginTop: 10,
       }}
     >
       <View>
         <Text style={{ color: "white", fontSize: 17, marginBottom: 5 }}>
-          Everything look great
+          {title}
         </Text>
-        <Text style={{ fontSize: 13, color: "white" }}>Patty</Text>
+        <Text style={{ fontSize: 13, color: "white" }}>{artist}</Text>
       </View>
       <View>
         <Fontisto

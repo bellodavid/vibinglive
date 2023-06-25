@@ -1,31 +1,54 @@
 import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import Slider from "@react-native-community/slider";
 import { pallets } from "../../constant";
-
-const SlideBar = () => {
+import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { AppContext } from "../../AppContext";
+const SlideBar = ({playAction, icon, currentTime, totalTime, progress}) => {
+  
+ 
   return (
     <View>
       <Slider
-        style={{ width: "100%", height: 40, marginTop: 40 }}
+        style={{ width: "100%", height: 40, marginTop: 50 }}
+        value={progress}
+        
         minimumValue={0}
         maximumValue={1}
         minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#F5F5F5"
+        maximumTrackTintColor="gray"
         thumbTintColor="#FFFFFF"
       />
       <View
         style={{
-          marginLeft: 20,
           marginRight: 20,
           flexDirection: "row",
-          width: "90%",
+          width: "100%",
           justifyContent: "space-between",
-          marginTop: -10
+          marginTop: 1,
         }}
       >
-        <Text style={styles.seekTime}>0:01</Text>
-        <Text style={styles.seekTime}>0:01</Text>
+        <Text style={styles.seekTime}>{currentTime}</Text>
+        <Text style={styles.seekTime}>{totalTime}</Text>
+      </View>
+
+      <View
+        style={{
+          marginTop: 40,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          width: "100%",
+          
+        }}
+      >
+        <Ionicons style={{top: 7}}  name="ios-shuffle-outline" size={22} color="white" />
+        <MaterialCommunityIcons name="skip-previous" size={32} color="white" />
+        <FontAwesome5 onPress={playAction} name={icon} size={32} color="white" />
+        <MaterialCommunityIcons name="skip-next" size={32} color="white" />
+        <Feather style={{top: 5}} name="repeat" size={18} color="white" />
       </View>
     </View>
   );

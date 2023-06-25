@@ -17,7 +17,7 @@ export type TabStackParamList = {
   Library: undefined;
 };
 
-const TabNavigator = ({navigation}: {navigation:any}) => {
+const TabNavigator = ({ navigation }: { navigation: any }) => {
   const Tab = createBottomTabNavigator<TabStackParamList>();
   const naviation = useNavigation();
 

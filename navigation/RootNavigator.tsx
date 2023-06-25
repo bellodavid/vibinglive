@@ -10,12 +10,14 @@ import PlayerWidget from "../components/PlayerWidget/PlayerWidget";
 import { auth } from "../firebase/config";
 import Login from "../screens/Auth/Login/Login";
 import { useNavigation } from "@react-navigation/native";
+import PlayerScreen from "../screens/App/PlayerScreen";
 
 export type RootStackParamList = {
   auth: undefined;
   albumScreen: undefined;
   onboard: undefined;
   tab: undefined;
+  Player: undefined;
   Login: undefined;
   CreateAccount: undefined;
   MyModal: { userId: string; name: string };
@@ -28,9 +30,9 @@ const RootNavigator = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user?.emailVerified) {
-        setIsLoggedin(true);
-      } else {
         setIsLoggedin(false);
+      } else {
+        setIsLoggedin(true);
       }
     });
     return unsubscribe;
@@ -56,6 +58,11 @@ const RootNavigator = () => {
         />
       )}
       <RootStack.Screen
+        options={{ headerShown: false }}
+        name="Player"
+        component={PlayerScreen}
+      />
+      <RootStack.Screen
         options={{
           headerShown: false,
         }}
@@ -73,5 +80,4 @@ const RootNavigator = () => {
     </RootStack.Navigator>
   );
 };
-
 export default RootNavigator;

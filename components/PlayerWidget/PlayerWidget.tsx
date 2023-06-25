@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Dimensions, Touchable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Touchable,
+  Pressable,
+} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Icon, Image } from "@rneui/themed";
 import { CardDivider } from "@rneui/base/dist/Card/Card.Divider";
@@ -6,10 +13,16 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { pallets } from "../../constant";
 import { Audio } from "expo-av";
+import { AntDesign } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import { onPlay } from "../SongList/SongList";
 import { AppContext } from "../../AppContext";
-
-const screenHeight = Dimensions.get("window").height / 2;
+import { useNavigation } from "@react-navigation/native";
+import { BottomModal, ModalContent } from "react-native-modals";
+import PlayerCard from "../player/PlayerCard";
+import SlideBar from "../player/Slider";
+import CurrentSong from "../player/CurrentSong";
+const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 const albumDefaultImage =
   "https://media.istockphoto.com/id/1199639660/vector/music-notes-neon-icon.jpg?s=612x612&w=0&k=20&c=-pC3Rrvn6sm2TSkIh2rw5Q7fjtXz6RgGXWDiStXpBoM=";
@@ -20,16 +33,29 @@ export type songListProp = {
 const PlayerWidget = ({ songHandle }) => {
   const [sound, setSound] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState<number | null>(null);
+  const [totalDuration, setTotalDuration] = useState<number | null>(null);
   const [position, setPosition] = useState<number | null>();
-  const { songId, songUri, songImg, songArtist } = useContext(AppContext);
+  const { songId, songUri, songImg, songArtist, setProgress } =
+    useContext(AppContext);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const onPlayBackStatusUpdate = (status) => {
     setIsPlaying(status.isPlaying);
-    setDuration(status.durationMillis);
+    setTotalDuration(status.durationMillis);
+
     setPosition(status.positionMillis);
+
+    // if (status.didJustFinish === true) {
+    //   setCurrentSound(null);
+    //   playNextTrack();
+    // }
   };
 
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60000);
+    const seconds = Math.floor((time % 60000) / 1000);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
   const playCurrentSong = async () => {
     if (sound) {
       await sound.unloadAsync();
@@ -59,10 +85,12 @@ const PlayerWidget = ({ songHandle }) => {
   };
 
   const getProgress = () => {
-    if (sound === null || duration === null || position === null) {
+    if (sound === null || totalDuration === null || position === null) {
       return 0;
     }
-    return (position / duration) * 100;
+
+
+    return (position / totalDuration) * 100;
   };
 
   return (
@@ -91,14 +119,16 @@ const PlayerWidget = ({ songHandle }) => {
             }}
           >
             <View>
-              <Text
-                style={{ color: "white", fontSize: 12, fontWeight: "bold" }}
-              >
-                {songId}
-              </Text>
-              <Text style={{ color: "white", fontSize: 11, marginTop: 1 }}>
-                {songArtist}
-              </Text>
+              <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                <Text
+                  style={{ color: "white", fontSize: 12, fontWeight: "bold" }}
+                >
+                  {songId}
+                </Text>
+                <Text style={{ color: "white", fontSize: 11, marginTop: 1 }}>
+                  {songArtist}
+                </Text>
+              </Pressable>
             </View>
             <View
               style={{
@@ -128,6 +158,59 @@ const PlayerWidget = ({ songHandle }) => {
             </View>
           </View>
         </View>
+        <BottomModal
+          visible={modalVisible}
+          onHardwareBackPress={() => setModalVisible(false)}
+          swipeDirection={["up", "down"]}
+          wipeThreshold={200}
+        >
+          <ModalContent
+            style={{
+              height: "100%",
+              width: "100%",
+              backgroundColor: pallets.backgroundDarker,
+            }}
+          >
+            <View style={{ height: "90%", width: "100%" }}>
+              <View
+                style={{
+                  marginTop: 10,
+                  flexDirection: "row",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Pressable
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <AntDesign
+                    onPress={() => setModalVisible(!modalVisible)}
+                    name="down"
+                    size={24}
+                    color="white"
+                  />
+                </Pressable>
+                <Pressable>
+                  <Entypo name="dots-three-vertical" size={24} color="white" />
+                </Pressable>
+              </View>
+              <PlayerCard songImage={songImg} />
+
+              <CurrentSong title={songId} artist={songArtist} />
+              <SlideBar
+                onPress={onPlayPausePress}
+                icon={isPlaying ? "pause" : "play"}
+                currentTime={formatTime(position)}
+                totalTime={formatTime(totalDuration)}
+                progress={getProgress()/100}
+              />
+            </View>
+          </ModalContent>
+        </BottomModal>
       </View>
       <CardDivider />
     </View>
@@ -140,6 +223,8 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 60,
+   
+  
     backgroundColor: pallets.backgroundDarker,
     flexDirection: "row",
     paddingLeft: 20,
