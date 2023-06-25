@@ -44,11 +44,11 @@ const SlideBar = ({playAction, icon, currentTime, totalTime, progress}) => {
           
         }}
       >
-        <Ionicons style={{top: 7}}  name="ios-shuffle-outline" size={22} color="white" />
+        <Ionicons style={{top: 5}}  name="ios-shuffle-outline" size={20} color="white" />
         <MaterialCommunityIcons name="skip-previous" size={32} color="white" />
         <FontAwesome5 onPress={playAction} name={icon} size={32} color="white" />
         <MaterialCommunityIcons name="skip-next" size={32} color="white" />
-        <Feather style={{top: 5}} name="repeat" size={18} color="white" />
+        <Feather style={{top: 7}} name="repeat" size={15} color="white" />
       </View>
     </View>
   );

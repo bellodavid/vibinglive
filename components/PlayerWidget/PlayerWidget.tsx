@@ -109,7 +109,7 @@ const PlayerWidget = ({ songHandle }) => {
             style={{
               height: 35,
               width: 35,
-              marginRight: 10,
+              marginRight: 1,
               marginTop: 14,
               borderWidth: 1,
               borderColor: "white",
@@ -127,12 +127,8 @@ const PlayerWidget = ({ songHandle }) => {
           >
             <View>
               <Pressable onPress={() => setModalVisible(!modalVisible)}>
-                <Text
-                  style={{ color: "white", fontSize: 12, fontWeight: "bold" }}
-                >
-                  {songId}
-                </Text>
-                <Text style={{ color: "white", fontSize: 11, marginTop: 1 }}>
+                <Text style={{ color: "white", fontSize: 12 }}>{songId}</Text>
+                <Text style={{ color: "white", fontSize: 9, marginTop: 1 }}>
                   {songArtist}
                 </Text>
               </Pressable>
@@ -141,14 +137,14 @@ const PlayerWidget = ({ songHandle }) => {
               style={{
                 flexDirection: "row",
                 width: 100,
-                justifyContent: "space-between",
+                justifyContent: "space-around",
               }}
             >
               <TouchableOpacity>
                 <FontAwesome
                   onPress={onPlayPausePress}
                   name={isPlaying ? "pause" : "play"}
-                  size={25}
+                  size={18}
                   color="white"
                   style={{ marginTop: 7 }}
                 />
@@ -157,7 +153,7 @@ const PlayerWidget = ({ songHandle }) => {
                 <Icon
                   type="entypo"
                   name="controller-next"
-                  size={30}
+                  size={20}
                   color="white"
                   style={{ marginTop: 5 }}
                 />

@@ -19,7 +19,7 @@ const CurrentSong = ({ title, artist }) => {
       }}
     >
       <View>
-        <Text style={{ color: "white", fontSize: 17, marginBottom: 5 }}>
+        <Text style={{ color: "white", fontSize: 15, marginBottom: 5 }}>
           {title}
         </Text>
         <Text style={{ fontSize: 13, color: "white" }}>{artist}</Text>

@@ -53,7 +53,7 @@ const SongList = (props) => {
               source={{ uri: song.imgUri }}
             />
             <View style={styles.container}>
-              <Text style={{ color: "white", fontWeight: "bold" }}>
+              <Text style={{ color: "white", fontSize: 13 }}>
                 {song.title}
               </Text>
               <Text style={{ color: "white", fontSize: 12, marginTop: 5 }}>

@@ -11,7 +11,7 @@ const Category = ({title, albums}: CategoryProps) => {
   return (
     <View  style={{marginTop: 15}}>
       <View style={{display: "flex", flexDirection:"row", width: "100%", justifyContent: "space-between"}}>
-        <Text style={{color: pallets.white, fontWeight: "bold", fontSize: 26}}>{title}</Text>
+        <Text style={{color: pallets.white, fontSize: 18, marginTop: 10}}>{title}</Text>
         <Text style={{color: pallets.primary, marginTop: 14}}>See All</Text>
       </View>
     <ScrollView style={styles.container} showsHorizontalScrollIndicator={false}>

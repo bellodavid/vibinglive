@@ -17,6 +17,7 @@ const AlbumScreen = () => {
   // console.log(route);
   const [album, setAlbum] = useState(null);
   const [savedTracks, setSavedTracks] = useState();
+
   const image = route.params.albumImageUri;
 
   const API_URL = "https://good-puce-nematode-cuff.cyclic.app/api/v1/songs";
@@ -32,6 +33,8 @@ const AlbumScreen = () => {
     }
   };
 
+ 
+
   useEffect(() => {
     getSavedTracks();
   }, []);
@@ -43,22 +46,25 @@ const AlbumScreen = () => {
   };
   const navigation = useNavigation();
   return (
-    <View>
-    <ScrollView style={{ backgroundColor: pallets.background }}>
+    <View style={{height: "100%"}}>
+    <ScrollView style={{ backgroundColor: pallets.background, paddingLeft: 10, paddingRight: 10 }}>
       <View style={styles.container}>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", }}>
           <Icon
             type="antdesign"
             name="left"
             color="white"
+            size={20}
             onPress={navigation.goBack}
           />
-          <Icon type="antdesign" name="search1" color="white" />
+          <Icon type="antdesign" size={20} name="search1" color="white" />
         </View>
 
-        {/* <AlbumHeader/> */}
+ 
 
-        <FlatList
+       
+      </View>
+      <FlatList
           data={savedTracks}
           renderItem={({ item }) => <SongList song={item} />}
           keyExtractor={(item) => item.id}
@@ -66,8 +72,6 @@ const AlbumScreen = () => {
             <AlbumHeader album={albumCategories[0].albums} />
           )}
         />
-      </View>
-    
     </ScrollView>
     <PlayerWidget />
     </View>
@@ -81,6 +85,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     flex: 1,
     marginBottom: 50,
+    height: "100%",
     backgroundColor: pallets.background,
     marginLeft: 20,
     marginRight: 20,

@@ -14,7 +14,7 @@ const AlbumButtons = () => {
   return (
     <View
       style={{
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         flexDirection: "row",
         marginTop: 30,
         marginBottom: 30,
@@ -24,21 +24,20 @@ const AlbumButtons = () => {
         style={{
           backgroundColor: pallets.primary,
           padding: 15,
-          height: 60,
-          width: 170,
+          height: 50,
+          width: 140,
           flexDirection: "row",
           borderRadius: 5,
           justifyContent: "center",
         }}
       >
-        <Ionicons name="logo-google-playstore" color="white" size={30} />
+        <Ionicons name="logo-google-playstore" color="white" size={20} />
         <Text
           style={{
             marginLeft: 10,
             alignSelf: "center",
             color: "white",
-            fontSize: 20,
-            fontWeight: "500",
+            fontSize: 17,
           }}
         >
           Play All
@@ -50,21 +49,26 @@ const AlbumButtons = () => {
           borderWidth: 1,
           borderColor: pallets.primary,
           padding: 10,
-          height: 60,
-          width: 180,
+          height: 50,
+          width: 140,
           flexDirection: "row",
           borderRadius: 5,
           justifyContent: "center",
         }}
         onPress={handleNavigation}
       >
-        <Ionicons name="shuffle" color="white" size={35} />
+        <Ionicons
+          style={{ paddingTop: 2 }}
+          name="shuffle"
+          color="white"
+          size={22}
+        />
         <Text
           style={{
             marginLeft: 10,
             alignSelf: "center",
             color: "white",
-            fontSize: 20,
+            fontSize: 17,
             fontWeight: "300",
           }}
         >

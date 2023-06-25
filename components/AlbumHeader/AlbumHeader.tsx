@@ -14,9 +14,9 @@ const AlbumHeader = (props) => {
   const { albumImage } = useContext(AppContext);
   return (
     <View>
-      <View style={{ alignItems: "center", marginTop: 30 }}>
+      <View style={{ alignItems: "center",}}>
         <Image
-          style={{ height: 200, width: 200, borderRadius: 10 }}
+          style={{ height: 250, width: 250, borderRadius: 10 }}
           source={{ uri: albumImage }}
         />
       </View>

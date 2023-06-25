@@ -36,7 +36,7 @@ const HomeScreen = () => {
           keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
         />
-        
+
         <View style={{ height: 70 }}></View>
       </View>
     </ScrollView>

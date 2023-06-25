@@ -30,13 +30,13 @@ const Header = () => {
           style={{ marginTop: 1 }}
           type="antdesign"
           name="bells"
-          size={25}
+          size={20}
           color="white"
         />
         <EvilIcons
           onPress={handleSignout}
           name="user"
-          size={32}
+          size={28}
           color="white"
         />
       </View>
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: pallets.white,
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 16,
   },
 });

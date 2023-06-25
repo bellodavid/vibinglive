@@ -34,9 +34,10 @@ const styles = StyleSheet.create({
   },
 
   imageCard: {
-    width: 300,
-    height: 300,
+    width: 280,
+    height: 280,
     borderRadius: 10,
     alignSelf: "center",
+    
   },
 });
