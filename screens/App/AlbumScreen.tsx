@@ -36,12 +36,7 @@ const AlbumScreen = () => {
   useEffect(() => {
     getSavedTracks();
   }, []);
-  const playTrack = async () => {
-    if (savedTrack.length > 0) {
-      setCurrentTrack(savedTracks[0]);
-    }
-    await play(savedTracks[0]);
-  };
+  
   const navigation = useNavigation();
   return (
     <View style={{ height: "100%" }}>

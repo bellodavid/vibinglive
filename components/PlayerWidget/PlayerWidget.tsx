@@ -6,7 +6,7 @@ import {
   Touchable,
   Pressable,
 } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Icon, Image } from "@rneui/themed";
 import { CardDivider } from "@rneui/base/dist/Card/Card.Divider";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -32,11 +32,24 @@ export type songListProp = {
 
 const PlayerWidget = ({ songHandle }) => {
   const [sound, setSound] = useState(null);
+  const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const value = useRef(0);
   const [totalDuration, setTotalDuration] = useState<number | null>(null);
   const [position, setPosition] = useState<number | null>();
-  const { songId, songUri, songImg, songArtist, setProgress } =
-    useContext(AppContext);
+  const {
+    songId,
+    songUri,
+    setSongUri,
+    setSongId,
+    setSongImg,
+    setSongArtist,
+    songImg,
+    songArtist,
+    setProgress,
+    savedTrack,
+    setSavedTrack,
+  } = useContext(AppContext);
   const [modalVisible, setModalVisible] = useState(false);
 
   const onPlayBackStatusUpdate = (status) => {
@@ -59,11 +72,18 @@ const PlayerWidget = ({ songHandle }) => {
   const playCurrentSong = async () => {
     if (sound) {
       await sound.unloadAsync();
+    } else {
+      setCurrentTrack(savedTrack[0]);
     }
+    await Audio.setAudioModeAsync({
+      playsInSilentModeIOS: true,
+      staysActiveInBackground: false,
+      shouldDuckAndroid: false,
+    });
 
     const { sound: newSound } = await Audio.Sound.createAsync(
       { uri: songUri },
-      { shouldPlay: isPlaying },
+      { shouldPlay: isPlaying, isLooping: false },
       onPlayBackStatusUpdate
     );
 
@@ -85,6 +105,45 @@ const PlayerWidget = ({ songHandle }) => {
     }
   };
 
+  const playNextTrack = async () => {
+    if (sound) {
+      await sound.stopAsync();
+      setSound(null);
+    }
+    value.current += 1;
+    if (value.current < savedTrack.length) {
+      const nextTrack = savedTrack[value.current];
+      setSongUri(nextTrack.playUri);
+      setSongId(nextTrack.title);
+      setSongImg(nextTrack.imgUri);
+      setSongArtist(nextTrack.artist);
+      console.log(nextTrack);
+
+      await playCurrentSong();
+    } else {
+      console.log("end of playlist");
+    }
+  };
+
+  const playPreviousTrack = async () => {
+    if (sound) {
+      await sound.stopAsync();
+      setSound(null);
+    }
+    value.current -= 1;
+    if (value.current < savedTrack.length) {
+      const nextTrack = savedTrack[value.current];
+      setSongUri(nextTrack.playUri);
+      setSongId(nextTrack.title);
+      setSongImg(nextTrack.imgUri);
+      setSongArtist(nextTrack.artist);
+      console.log(nextTrack);
+
+      await playCurrentSong();
+    } else {
+      console.log("end of playlist");
+    }
+  };
   const getProgress = () => {
     if (sound === null || totalDuration === null || position === null) {
       return 0;
@@ -149,7 +208,7 @@ const PlayerWidget = ({ songHandle }) => {
                   style={{ marginTop: 7 }}
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <Pressable onPress={playNextTrack}>
                 <Icon
                   type="entypo"
                   name="controller-next"
@@ -157,7 +216,7 @@ const PlayerWidget = ({ songHandle }) => {
                   color="white"
                   style={{ marginTop: 5 }}
                 />
-              </TouchableOpacity>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -205,6 +264,8 @@ const PlayerWidget = ({ songHandle }) => {
 
               <CurrentSong title={songId} artist={songArtist} />
               <SlideBar
+                onPlayNext={playNextTrack}
+                onPlayPrevious={playPreviousTrack}
                 onPress={onPlayPausePress}
                 icon={isPlaying ? "pause" : "play"}
                 currentTime={formatTime(position)}

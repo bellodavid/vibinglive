@@ -7,15 +7,20 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { AppContext } from "../../AppContext";
-const SlideBar = ({playAction, icon, currentTime, totalTime, progress}) => {
-  
- 
+const SlideBar = ({
+  playAction,
+  icon,
+  currentTime,
+  totalTime,
+  progress,
+  onPlayNext,
+  onPlayPrevious,
+}) => {
   return (
     <View>
       <Slider
         style={{ width: "100%", height: 40, marginTop: 50 }}
         value={progress}
-        
         minimumValue={0}
         maximumValue={1}
         minimumTrackTintColor="#FFFFFF"
@@ -41,14 +46,33 @@ const SlideBar = ({playAction, icon, currentTime, totalTime, progress}) => {
           flexDirection: "row",
           justifyContent: "space-between",
           width: "100%",
-          
         }}
       >
-        <Ionicons style={{top: 5}}  name="ios-shuffle-outline" size={20} color="white" />
-        <MaterialCommunityIcons name="skip-previous" size={32} color="white" />
-        <FontAwesome5 onPress={playAction} name={icon} size={32} color="white" />
-        <MaterialCommunityIcons name="skip-next" size={32} color="white" />
-        <Feather style={{top: 7}} name="repeat" size={15} color="white" />
+        <Ionicons
+          style={{ top: 5 }}
+          name="ios-shuffle-outline"
+          size={20}
+          color="white"
+        />
+        <MaterialCommunityIcons
+          onPress={onPlayPrevious}
+          name="skip-previous"
+          size={32}
+          color="white"
+        />
+        <FontAwesome5
+          onPress={playAction}
+          name={icon}
+          size={32}
+          color="white"
+        />
+        <MaterialCommunityIcons
+          onPress={onPlayNext}
+          name="skip-next"
+          size={32}
+          color="white"
+        />
+        <Feather style={{ top: 7 }} name="repeat" size={15} color="white" />
       </View>
     </View>
   );

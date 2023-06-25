@@ -16,7 +16,7 @@ const HeaderSearch = () => {
     <View style={{display: "flex", flexDirection:"row", justifyContent:"space-between"}}>
       <Icon 
       containerStyle={{paddingTop: 10, paddingLeft:10}} 
-      type="antdesign" name="left" size={30} color="white"/>
+      type="antdesign" name="left" size={18} color="white"/>
       {active ?  <Input 
       placeholder='Search'
       leftIcon={ <Icon type="antdesign" name="search1" size={24} color="white"/>} 
@@ -30,9 +30,9 @@ const HeaderSearch = () => {
       <View style={{display: "flex", flexDirection:"row", paddingTop: 10,
       paddingRight: 10,}}>
         <TouchableOpacity onPress={handleClick}>
-      <Icon type="antdesign" name="search1" size={30} color="white"/>
+      <Icon style={{top: 1}} type="antdesign" name="search1" size={20} color="white"/>
       </TouchableOpacity>
-      <EvilIcons style={{paddingLeft: 10}} name="user" size={35} color="white"/>
+      <EvilIcons style={{paddingLeft: 10}} name="user" size={25} color="white"/>
       </View>
     </View>
   )

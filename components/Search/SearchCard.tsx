@@ -1,69 +1,48 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
-import React from 'react'
-import { Card, Image } from '@rneui/themed'
-import Logo from '../Category/Logo'
+import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
+import React from "react";
+import { Card, Image } from "@rneui/themed";
+import Logo from "../Category/Logo";
+import { useNavigation } from "@react-navigation/native";
 
 
-
-const SearchCard = () => {
+const SearchCard = ({ card }) => {
+  const navigation = useNavigation()
+  const handleCard = () => {
+    navigation.navigate('AlbumScreen')
+  }
   return (
-    <View style={{marginLeft: 20, marginBottom: 20, marginTop: 20}}>
+    <Pressable>
+    <View style={{ marginLeft: 20, marginBottom: 20, marginTop: 20 }}>
       <Card containerStyle={styles.cardStyle}>
-        <Image style={{
-          width: 170,
-          height: 100,
-          borderRadius: 10,
-        }} source={{uri: 'https://images.unsplash.com/photo-1618588507085-c79565432917?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fA%3D%3D&w=1000&q=80'}}/>
+        <Image
+          style={{
+            width: 170,
+            height: 100,
+            borderRadius: 10,
+          }}
+          source={{ uri: card.imgUri}}
+        />
       </Card>
-      <Logo/>
-      <Text style={styles.description}>Made for you</Text>
+      <Logo />
+      <Text style={styles.description}>{card.title}</Text>
     </View>
-  )
-}
+    </Pressable>
+    
+  );
+};
 
-const CardList = () => {
-  return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-    <View style={{
-      display: "flex", justifyContent: "space-evenly", flexDirection: "row"}}>
-      <SearchCard/>
-      <SearchCard/>
-      </View>
-      <View style={{display: "flex", justifyContent: "space-evenly", flexDirection: "row"}}>
-      <SearchCard/>
-      <SearchCard/>
-      </View>
-      <View style={{display: "flex", justifyContent: "space-evenly", flexDirection: "row"}}>
-      <SearchCard/>
-      <SearchCard/>
-      </View>
-      <View style={{display: "flex", justifyContent: "space-evenly", flexDirection: "row"}}>
-      <SearchCard/>
-      <SearchCard/>
-      </View>
-      <View style={{display: "flex", justifyContent: "space-evenly", flexDirection: "row"}}>
-      <SearchCard/>
-      <SearchCard/>
-      </View>
-      </ScrollView>
-      )
-}
-
-
-export default CardList
 
 const styles = StyleSheet.create({
-cardStyle: {
+  cardStyle: {
     width: 170,
     height: 100,
     margin: 0,
     padding: 0,
-   borderRadius: 10,
-   borderWidth: 0,
-},
-description: {
-  color: 'white',
-  paddingTop: 5,
-
-}
-})
+    borderRadius: 10,
+    borderWidth: 0,
+  },
+  description: {
+    color: "white",
+    paddingTop: 5,
+  },
+});
