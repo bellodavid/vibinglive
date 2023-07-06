@@ -24,13 +24,13 @@ const SearchCard = ({ card }) => {
         />
       </Card>
       <Logo />
-      <Text style={styles.description}>{card.title}</Text>
+      <Text numberOfLines={1} ellipsizeMode="tail" style={styles.description}>{card.title}</Text>
     </View>
     </Pressable>
     
   );
 };
-
+export  default SearchCard;
 
 const styles = StyleSheet.create({
   cardStyle: {
@@ -44,5 +44,9 @@ const styles = StyleSheet.create({
   description: {
     color: "white",
     paddingTop: 5,
+    fontSize: 11,
+
+    width: "70%",
+    flexWrap: "wrap"
   },
 });
