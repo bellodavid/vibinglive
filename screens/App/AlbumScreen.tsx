@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { pallets } from "../../constant";
@@ -14,19 +21,20 @@ import PlayerWidget from "../../components/PlayerWidget/PlayerWidget";
 
 const AlbumScreen = () => {
   const { savedTrack, setSavedTrack } = useContext(AppContext);
+  const [isLoading, setIsLoading] = useState();
   const route = useRoute();
   // console.log(route);
   const [album, setAlbum] = useState(null);
 
-  const image = route.params.albumImageUri;
-
   const API_URL = "https://good-puce-nematode-cuff.cyclic.app/api/v1/songs";
 
   const getSavedTracks = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(API_URL);
       const data = await response.json();
       setSavedTrack(data.data.doc);
+      setIsLoading(false);
       console.log(savedTrack); //
     } catch (err) {
       console.log(err);
@@ -36,7 +44,7 @@ const AlbumScreen = () => {
   useEffect(() => {
     getSavedTracks();
   }, []);
-  
+
   const navigation = useNavigation();
   return (
     <View style={{ height: "100%" }}>
@@ -55,20 +63,28 @@ const AlbumScreen = () => {
               type="antdesign"
               name="left"
               color="white"
-              size={20}
+              size={18}
               onPress={navigation.goBack}
             />
-            <Icon type="antdesign" size={20} name="search1" color="white" />
+            <Icon type="antdesign" size={18} name="search1" color="white" />
           </View>
         </View>
-        <FlatList
-          data={savedTrack}
-          renderItem={({ item }) => <SongList song={item} />}
-          keyExtractor={(item) => item.id}
-          ListHeaderComponent={() => (
-            <AlbumHeader album={albumCategories[0].albums} />
-          )}
-        />
+        {isLoading ? (
+          <ActivityIndicator
+            style={{ marginTop: 50 }}
+            color={pallets.primary}
+            size="large"
+          />
+        ) : (
+          <FlatList
+            data={savedTrack}
+            renderItem={({ item }) => <SongList song={item} />}
+            keyExtractor={(item) => item.id}
+            ListHeaderComponent={() => (
+              <AlbumHeader album={albumCategories[0].albums} />
+            )}
+          />
+        )}
       </ScrollView>
       <PlayerWidget />
     </View>
@@ -84,7 +100,6 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     height: "100%",
     backgroundColor: pallets.background,
-    marginLeft: 20,
-    marginRight: 20,
+    marginRight: 10,
   },
 });

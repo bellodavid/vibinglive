@@ -28,7 +28,7 @@ const SignUp = () => {
     confirmPass: "",
     error: "",
   });
-  const size = Platform.OS === "ios" ? "large" : 70;
+  const size = Platform.OS === "ios" ? "large" : 50;
   const [password, setPassword] = useState({
     password: false,
     confirmPassword: false,
@@ -132,7 +132,7 @@ const SignUp = () => {
           </Text>
 
           <Input
-            inputStyle={{ color: "white", paddingLeft: 10, fontSize:14 }}
+            inputStyle={{ color: "white", paddingLeft: 10, fontSize: 14 }}
             inputContainerStyle={{
               borderWidth: 0,
               borderBottomWidth: 0,
@@ -149,11 +149,16 @@ const SignUp = () => {
               type: "antdesign",
               name: "mail",
               color: pallets.darkGrey,
-              size: 18
+              size: 18,
             }}
             onChangeText={(text) => setValue({ ...value, email: text })}
             label="Email Address"
-            labelStyle={{ color: pallets.grey, paddingBottom: 10, fontWeight: 400, fontSize: 14 }}
+            labelStyle={{
+              color: pallets.grey,
+              paddingBottom: 10,
+              fontWeight: 400,
+              fontSize: 14,
+            }}
           />
 
           <PasswordField

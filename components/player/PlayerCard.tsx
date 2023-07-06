@@ -11,8 +11,7 @@ import { pallets } from "../../constant";
 import { ScreenHeight, ScreenWidth } from "@rneui/base";
 import { AppContext } from "../../AppContext";
 
-const PlayerCard = ({songImage}) => {
-  
+const PlayerCard = ({ songImage }) => {
   const playerDefaultImage =
     "https://media.istockphoto.com/id/1199639660/vector/music-notes-neon-icon.jpg?s=612x612&w=0&k=20&c=-pC3Rrvn6sm2TSkIh2rw5Q7fjtXz6RgGXWDiStXpBoM=";
   return (
@@ -29,8 +28,7 @@ export default PlayerCard;
 
 const styles = StyleSheet.create({
   container: {
-   top: 90,
-   
+    top: 90,
   },
 
   imageCard: {
@@ -38,6 +36,5 @@ const styles = StyleSheet.create({
     height: 280,
     borderRadius: 10,
     alignSelf: "center",
-    
   },
 });

@@ -46,7 +46,7 @@ const Password = () => {
       
     <Icon 
       type="antdesign" 
-      name="left" size={30} 
+      name="left" size={18} 
       color="white"
       containerStyle={{alignItems:"baseline", marginTop: 30, marginLeft: 10}}
       onPress={navigation.goBack}/>

@@ -252,12 +252,12 @@ const PlayerWidget = ({ songHandle }) => {
                   <AntDesign
                     onPress={() => setModalVisible(!modalVisible)}
                     name="down"
-                    size={24}
+                    size={18}
                     color="white"
                   />
                 </Pressable>
                 <Pressable>
-                  <Entypo name="dots-three-vertical" size={24} color="white" />
+                  <Entypo name="dots-three-vertical" size={18} color="white" />
                 </Pressable>
               </View>
               <PlayerCard songImage={songImg} />

@@ -23,13 +23,13 @@ const Login = () => {
    const [password, setPassword] =React.useState(false)
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = React.useState(false)
-  const size = Platform.OS === 'ios'? 'large': 70
+  const size = Platform.OS === 'ios'? 'large': 50
   const handlePassword = () => {
     navigation.navigate('Password')
   }
   
   const handleSignUp = () => {
-    navigation.navigate('SignUp')
+    navigation.navigate('auth', {screen: "SignUp"})
   }
 
   const togglePasswordVisibility = () => {
@@ -46,7 +46,8 @@ const Login = () => {
         alert('Please verify your email address')
         isLoading(false)
       }else{
-        navigation.navigate('Home')
+        navigation.navigate('home')
+        isLoading(false)
       }
      
     }). catch(error => {

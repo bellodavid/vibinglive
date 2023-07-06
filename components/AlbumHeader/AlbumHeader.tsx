@@ -21,13 +21,13 @@ const AlbumHeader = (props) => {
         />
       </View>
       <View style={{ marginTop: 20 }}>
-        <Text style={{ color: "white", fontSize: 25, fontWeight: "bold" }}>
+        <Text style={{ color: "white", fontSize: 22, fontWeight: "bold" }}>
           {album.name}
         </Text>
         <Text style={{ color: "white", marginTop: 4 }}>
           Album . {album.by}{" "}
         </Text>
-        <Text style={{ color: "white", marginTop: 4 }}>
+        <Text style={{ color: "white", marginTop: 4, fontSize: 10}}>
           {songLength} songs. 1hr 20mins
         </Text>
         <View
@@ -41,14 +41,14 @@ const AlbumHeader = (props) => {
           <MaterialIcons
             name="library-music"
             style={{ marginTop: 6 }}
-            size={25}
+            size={18}
             color="white"
           />
-          <Ionicons name="ios-download-outline" size={30} color="white" />
+          <Ionicons name="ios-download-outline" size={23} color="white" />
           <Entypo
             name="dots-three-vertical"
             style={{ marginTop: 6 }}
-            size={25}
+            size={18}
             color="white"
           />
         </View>

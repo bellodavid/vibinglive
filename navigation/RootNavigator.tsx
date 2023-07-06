@@ -11,6 +11,7 @@ import { auth } from "../firebase/config";
 import Login from "../screens/Auth/Login/Login";
 import { useNavigation } from "@react-navigation/native";
 import PlayerScreen from "../screens/App/PlayerScreen";
+import HomeScreen from "../screens/App/HomeScreen";
 
 export type RootStackParamList = {
   auth: undefined;
@@ -30,9 +31,9 @@ const RootNavigator = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user?.emailVerified) {
-        setIsLoggedin(true);
-      } else {
         setIsLoggedin(false);
+      } else {
+        setIsLoggedin(true);
       }
     });
     return unsubscribe;
@@ -40,7 +41,7 @@ const RootNavigator = () => {
 
   return (
     <RootStack.Navigator>
-      {isLoggedin ? (
+      {!isLoggedin ? (
         <RootStack.Group
           screenOptions={{
             headerShown: false,
@@ -76,6 +77,13 @@ const RootNavigator = () => {
         }}
         name="Login"
         component={Login}
+      />
+      <RootStack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="home"
+        component={TabNavigator}
       />
     </RootStack.Navigator>
   );
