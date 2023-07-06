@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     fontSize: 11,
 
-    width: "70%",
+    width: "90%",
     flexWrap: "wrap"
   },
 });

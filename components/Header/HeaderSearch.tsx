@@ -1,17 +1,18 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import { Icon, Input } from "@rneui/themed";
 import { pallets } from "../../constant";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const HeaderSearch = () => {
+const HeaderSearch = ({ onChange }) => {
   const [value, setValue] = useState("");
   const [active, setActive] = useState(false);
 
   const handleClick = () => {
     setActive(!active);
   };
+
   return (
     <View
       style={{
@@ -31,11 +32,12 @@ const HeaderSearch = () => {
         <Input
           placeholder="Search"
           leftIcon={
-            <Icon type="antdesign" name="search1" size={24} color="white" />
+            <Icon type="antdesign" name="search1" size={15} color="white" />
           }
-          inputStyle={{ color: "white", paddingLeft: 10 }}
+          inputStyle={{ color: "white", paddingLeft: 10, fontSize: 13 }}
           inputContainerStyle={styles.search}
-          containerStyle={{ width: 290 }}
+          containerStyle={{ width: 290, height: 40, marginTop: 4 }}
+          onChangeText={onChange}
         />
       ) : null}
 
@@ -47,7 +49,7 @@ const HeaderSearch = () => {
           paddingRight: 10,
         }}
       >
-        <TouchableOpacity onPress={handleClick}>
+        <Pressable onPress={handleClick}>
           <Icon
             style={{ top: 1 }}
             type="antdesign"
@@ -55,7 +57,7 @@ const HeaderSearch = () => {
             size={20}
             color="white"
           />
-        </TouchableOpacity>
+        </Pressable>
         <EvilIcons
           style={{ paddingLeft: 10 }}
           name="user"
@@ -71,10 +73,10 @@ export default HeaderSearch;
 
 const styles = StyleSheet.create({
   search: {
-    borderRadius: 10,
     backgroundColor: pallets.backgroundDarker,
     borderBottomWidth: 0,
-
     paddingLeft: 10,
+    fontSize: 10,
+    height: 35,
   },
 });
