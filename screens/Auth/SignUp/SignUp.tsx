@@ -107,7 +107,7 @@ const SignUp = () => {
           <Icon
             type="antdesign"
             name="left"
-            size={30}
+            size={18}
             color="white"
             containerStyle={{
               alignItems: "baseline",
@@ -131,31 +131,8 @@ const SignUp = () => {
               : value.error}
           </Text>
 
-          {/* <Input
-            inputStyle={{ color: "white", paddingLeft: 10 }}
-            inputContainerStyle={{
-              borderWidth: 0,
-              borderBottomWidth: 0,
-              paddingLeft: 10,
-              padding: 5,
-              backgroundColor: pallets.input,
-              borderColor: "white",
-              borderRadius: 10,
-            }}
-            containerStyle={{ margin: 0 }}
-            placeholder="Enter your name"
-            leftIcon={{
-              type: "Ionicons",
-              name: "person-outline",
-              color: pallets.darkGrey,
-            }}
-            onChangeText={(text) => setValue({ ...value, name: text })}
-            label="Name"
-            labelStyle={{ color: pallets.grey, paddingBottom: 10 }}
-          /> */}
-
           <Input
-            inputStyle={{ color: "white", paddingLeft: 10 }}
+            inputStyle={{ color: "white", paddingLeft: 10, fontSize:14 }}
             inputContainerStyle={{
               borderWidth: 0,
               borderBottomWidth: 0,
@@ -163,18 +140,20 @@ const SignUp = () => {
               padding: 5,
               backgroundColor: pallets.input,
               borderColor: "white",
+              height: 50,
               borderRadius: 10,
             }}
-            containerStyle={{ margin: 0 }}
+            containerStyle={{ margin: 0, marginBottom: -10 }}
             placeholder="Enter your email address"
             leftIcon={{
               type: "antdesign",
               name: "mail",
               color: pallets.darkGrey,
+              size: 18
             }}
             onChangeText={(text) => setValue({ ...value, email: text })}
             label="Email Address"
-            labelStyle={{ color: pallets.grey, paddingBottom: 10 }}
+            labelStyle={{ color: pallets.grey, paddingBottom: 10, fontWeight: 400, fontSize: 14 }}
           />
 
           <PasswordField

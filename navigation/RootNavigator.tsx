@@ -30,9 +30,9 @@ const RootNavigator = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user?.emailVerified) {
-        setIsLoggedin(false);
-      } else {
         setIsLoggedin(true);
+      } else {
+        setIsLoggedin(false);
       }
     });
     return unsubscribe;

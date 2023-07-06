@@ -67,7 +67,7 @@ const Login = () => {
      
     <Icon 
       type="antdesign" 
-      name="left" size={30} 
+      name="left" size={18} 
       color="white"
       containerStyle={{alignItems:"baseline", marginTop: 30, marginLeft: 10}}
       onPress={navigation.goBack}/>
@@ -127,6 +127,7 @@ password: {
     color: pallets.primary,
     top: -17,
     alignSelf: "flex-end",
-    paddingRight: 15
+    paddingRight: 15,
+    fontSize: 12
 }
 })

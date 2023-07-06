@@ -35,7 +35,7 @@ const PasswordField = ({
     <View>
       {/* <Text style={styles.label}>Full Name</Text> */}
       <Input
-        inputStyle={{ color: "white", paddingLeft: 10 }}
+        inputStyle={{ color: "white", paddingLeft: 10, fontSize: 14 }}
         inputContainerStyle={{
           borderWidth: 0,
           borderBottomWidth: 0,
@@ -45,6 +45,7 @@ const PasswordField = ({
           backgroundColor: pallets.input,
           borderColor: "white",
           borderRadius: 10,
+          height: 50
         }}
         containerStyle={{ margin: 0 }}
         placeholder={placeholder}
@@ -52,18 +53,19 @@ const PasswordField = ({
           type: "antdesign",
           name: `${leftIcon}`,
           color: pallets.darkGrey,
+          size: 18,
         }}
         rightIcon={
           <Feather
             name={rightIcon}
-            size={20}
+            size={14}
             color={pallets.darkGrey}
             onPress={visibility}
           />
         }
         onChangeText={setHandler}
         label={label}
-        labelStyle={{ color: pallets.grey, paddingBottom: 10 }}
+        labelStyle={{ color: pallets.grey, paddingBottom: 10, fontWeight: 400, fontSize: 14 }}
         secureTextEntry={secure}
       />
       <Text style={styles.container}>{instruction}</Text>
@@ -80,9 +82,8 @@ const styles = StyleSheet.create({
   },
   container: {
     color: pallets.white,
-    position: "absolute",
-    marginTop: 95,
     marginLeft: 15,
+    marginTop: -20,
     fontSize: 10,
   },
 });

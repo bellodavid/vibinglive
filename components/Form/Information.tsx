@@ -13,7 +13,7 @@ const Information = ({ title, step, description }: infoProps) => {
     <View>
       <Text style={styles.text}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
-      <View style={{}}>
+      <View>
         <Text
           style={{
             alignSelf: "flex-end",
@@ -34,17 +34,17 @@ export default Information;
 const styles = StyleSheet.create({
   text: {
     color: "white",
-    fontWeight: "bold",
-    fontSize: 25,
+    fontSize: 20,
     paddingLeft: 5,
   },
   description: {
     color: pallets.darkGrey,
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: 350,
     paddingBottom: 0,
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 8,
+    marginBottom: -20,
     lineHeight: 20,
   },
 });
