@@ -1,30 +1,28 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Card, Image } from "@rneui/themed";
 import Logo from "./Logo";
 import { Album } from "../../types";
 import { useNavigation } from "@react-navigation/native";
 import albumDetails from "../../data/albumDetails";
-import {AppContext} from "../../AppContext";
+import { AppContext } from "../../AppContext";
 
 type AlbumCardProps = {
   playTitle: string;
   player: string;
   imageUri: string;
   artistsHeadline: string;
-  album: any;
+  album: Album; // Assuming Album is the correct type for album
 };
 
-const AlbumCard = <AlbumCardProps>({album}) => {
-  const navigation = useNavigation()
-  const {setAlbumImage} = useContext(AppContext)
+const AlbumCard = ({ album }: AlbumCardProps) => {
+  const navigation = useNavigation();
+  const { setAlbumImage } = useContext(AppContext);
   const handleClick = () => {
     navigation.navigate("albumScreen", { albumImageUri: album.imageUri });
-    setAlbumImage(album.imageUri)
-
-
+    setAlbumImage(album.imageUri);
   };
- 
+
   return (
     <TouchableOpacity onPress={handleClick}>
       <View
@@ -61,6 +59,7 @@ const AlbumCard = <AlbumCardProps>({album}) => {
 };
 
 export default AlbumCard;
+
 const styles = StyleSheet.create({
   container: {
     borderWidth: 0,

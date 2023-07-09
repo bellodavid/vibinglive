@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "vibingnew",
-    "slug": "vibingnew",
+    "name": "vibinglive",
+    "slug": "vibinglive",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -30,14 +30,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "26577aba-48a8-4814-a399-4eb6dd2867fd"
+        "projectId": "23d8c456-ccf5-421e-966e-003fefd49d90"
       }
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/26577aba-48a8-4814-a399-4eb6dd2867fd"
+      "url": "https://u.expo.dev/23d8c456-ccf5-421e-966e-003fefd49d90"
     },
     "owner": "daveultraa"
   }

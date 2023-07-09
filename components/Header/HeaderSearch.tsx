@@ -5,7 +5,11 @@ import { pallets } from "../../constant";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const HeaderSearch = ({ onChange }) => {
+interface HeaderSearchProp {
+  onChange?: () => void;
+}
+
+const HeaderSearch = ({ onChange }: HeaderSearchProp) => {
   const [value, setValue] = useState("");
   const [active, setActive] = useState(false);
 

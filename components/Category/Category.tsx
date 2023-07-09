@@ -22,12 +22,7 @@ const Category = ({title, albums}: CategoryProps) => {
      showsHorizontalScrollIndicator={false}
      horizontal />
      
-      {/* <AlbumCard imgUrl='https://fakazahiphop.com/wp-content/uploads/2019/04/Dj-Skhu-Magnetic-Points-%E2%80%93-Africa-1200x1285.jpg'
-      title="DJ kycc" description='Joeboy, Fireboy, Burna boy'/>
-      <AlbumCard imgUrl='https://static-cse.canva.com/blob/1021238/1600w-1Nr6gsUndKw.jpg'
-      title="DJ kycc" description='Joeboy, Fireboy, Burna boy'/>
-      <AlbumCard imgUrl='https://freesidemedia.com/wp-content/uploads/2018/12/BattleSongs-AlbumCover-FreesideMedia-featured.jpg'
-      title="DJ kycc" description='Joeboy, Fireboy, Burna boy'/> */}
+     
       </ScrollView>
       </View>
   
