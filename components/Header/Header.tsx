@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import { pallets } from "../../constant";
 import { Icon } from "@rneui/themed";
@@ -14,6 +14,10 @@ const Header = () => {
       navigation.navigate("Login");
       console.log(error.message);
     });
+  };
+
+  const handleProfile = () => {
+    navigation.navigate("profile");
   };
   return (
     <View style={styles.container}>
@@ -33,8 +37,9 @@ const Header = () => {
           size={20}
           color="white"
         />
+
         <EvilIcons
-          onPress={handleSignout}
+          onPress={handleProfile}
           name="user"
           size={28}
           color="white"

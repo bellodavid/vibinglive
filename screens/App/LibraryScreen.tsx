@@ -9,9 +9,11 @@ import { FlatList } from "react-native-gesture-handler";
 import albumCategories from "../../data/albumCategories";
 import AlbumCard from "../../components/Category/AlbumCard";
 import { AppContext } from "../../AppContext";
+import LibaryCard from "../../components/Library/LibaryCard";
 let ScreenHeight = Dimensions.get("window").height;
 const LibraryScreen = () => {
   const { savedTrack, setSavedTrack } = useContext(AppContext);
+  console.log(JSON.stringify(savedTrack, null, 2));
   return (
     <ScrollView style={styles.container}>
       <HeaderSearch />
@@ -29,7 +31,32 @@ const LibraryScreen = () => {
           <LibraryButton color="#C3AEEC" icon="activity" label="My playlist" />
           <LibraryButton color="white" icon="folder" label="Favourite Album" />
         </View>
-        <Text style={{ color: "white", marginTop: 30 }}>Top Mixes</Text>
+        <Text style={{ color: "white", marginTop: 30, marginBottom: 10 }}>
+          Top Mixes
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            width: "100%",
+            justifyContent: "space-around",
+          }}
+        >
+          <LibaryCard
+            title="Ileya party groove"
+            description="All fun"
+            imageUri="https://i0.wp.com/www.val9ja.com/wp-content/uploads/2020/07/DJ-OP-Dot-Ileya-Party-Groove-Mix-artwork-1.jpeg?resize=150%2C150&ssl=1?crop=130px%2C0px%2C2309px%2C1731px&resize=300,226"
+          />
+          <LibaryCard
+            title="Ileya party groove"
+            description="All fun"
+            imageUri="https://i0.wp.com/www.val9ja.com/wp-content/uploads/2020/07/DJ-OP-Dot-Ileya-Party-Groove-Mix-artwork-1.jpeg?resize=150%2C150&ssl=1?crop=130px%2C0px%2C2309px%2C1731px&resize=300,226"
+          />
+          <LibaryCard
+            title="Ileya party groove"
+            description="All fun"
+            imageUri="https://i0.wp.com/www.val9ja.com/wp-content/uploads/2020/07/DJ-OP-Dot-Ileya-Party-Groove-Mix-artwork-1.jpeg?resize=150%2C150&ssl=1?crop=130px%2C0px%2C2309px%2C1731px&resize=300,226"
+          />
+        </View>
       </View>
     </ScrollView>
   );

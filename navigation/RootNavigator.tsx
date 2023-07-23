@@ -12,6 +12,8 @@ import Login from "../screens/Auth/Login/Login";
 import { useNavigation } from "@react-navigation/native";
 import PlayerScreen from "../screens/App/PlayerScreen";
 import HomeScreen from "../screens/App/HomeScreen";
+import ProfileScreen from "../screens/App/ProfileScreen";
+
 
 export type RootStackParamList = {
   auth: undefined;
@@ -58,11 +60,7 @@ const RootNavigator = () => {
           component={TabNavigator}
         />
       )}
-      <RootStack.Screen
-        options={{ headerShown: false }}
-        name="Player"
-        component={PlayerScreen}
-      />
+     
       <RootStack.Screen
         options={{
           headerShown: false,
@@ -84,6 +82,13 @@ const RootNavigator = () => {
         }}
         name="home"
         component={TabNavigator}
+      />
+       <RootStack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="profile"
+        component={ProfileScreen}
       />
     </RootStack.Navigator>
   );
