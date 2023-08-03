@@ -5,7 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import RootNavigator from "../navigation/RootNavigator";
 import PlayerWidget from "../components/PlayerWidget/PlayerWidget";
 import { AppContext } from "../AppContext";
-import {ModalPortal} from "react-native-modals"
+import { ModalPortal } from "react-native-modals";
 import { auth } from "../firebase/config";
 import PlayerScreen from "../screens/App/PlayerScreen";
 
@@ -14,9 +14,9 @@ const LoadApp = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user?.emailVerified) {
         console.log("not verified");
-        setIsLoggedin(false);
-      } else {
         setIsLoggedin(true);
+      } else {
+        setIsLoggedin(false);
       }
     });
     return unsubscribe;
@@ -42,7 +42,7 @@ const LoadApp = () => {
           songArtist,
           setSongArtist: (artist: string) => setSongArtist(artist),
           savedTrack,
-          setSavedTrack: ( savedTrack:[]) => setSavedTrack(savedTrack),
+          setSavedTrack: (savedTrack: []) => setSavedTrack(savedTrack),
           progress,
           setProgress: (progress: string) => setProgress(progress),
           albumImage,
@@ -51,12 +51,9 @@ const LoadApp = () => {
       >
         <NavigationContainer>
           <SafeAreaProvider>
-            <RootNavigator />
-            {/* <PlayerWidget /> */}
-            {/* {isLoggedin ? <PlayerWidget /> : null} */}
+          <RootNavigator />
           </SafeAreaProvider>
-         
-          <ModalPortal/>
+          <ModalPortal />
         </NavigationContainer>
       </AppContext.Provider>
     </>
