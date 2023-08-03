@@ -36,14 +36,21 @@ const ProfileScreen = () => {
             </Text>
           </View>
         </View>
-        {ProfileMenu.map((item, index) => (
+        <FlatList
+          data={ProfileMenu}
+          renderItem={({ item }) => (
+            <ProfileButton category={item.category} title={item.list} />
+          )}
+          keyExtractor={(item) => item.category}
+        />
+        
+        {/* {ProfileMenu?.map((item, index) => (
           <ProfileButton
-          key={index}
+            key={index}
             category={item.category}
-            
             title={item.list}
           />
-        ))}
+        ))} */}
       </View>
     </View>
   );

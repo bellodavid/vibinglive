@@ -62,12 +62,14 @@ const HeaderSearch = ({ onChange }: HeaderSearchProp) => {
             color="white"
           />
         </Pressable>
+        <Pressable>
         <EvilIcons
           style={{ paddingLeft: 10 }}
           name="user"
           size={25}
           color="white"
         />
+        </Pressable>
       </View>
     </View>
   );
